@@ -14,9 +14,9 @@ namespace api_lab2.Controllers
     public class StudentController : Controller
     {
 
-        StudentRepo srepo;
+        GenericRepo<Student> srepo;
         IMapper mapper;
-        public StudentController (StudentRepo srepo ,IMapper mapper )
+        public StudentController(GenericRepo<Student> srepo ,IMapper mapper )
         {
             this.srepo = srepo;
             this.mapper = mapper;
@@ -26,7 +26,9 @@ namespace api_lab2.Controllers
       
         public IActionResult GetAll([FromQuery] int pageNumber = 1, [FromQuery] int pageSize = 4, [FromQuery] string? search = null)
         {
-            var query = srepo.getall();
+
+
+            var query = srepo.getall(s=> s.instructor, s=> s.department);
             if (!string.IsNullOrEmpty(search))
             {
                 query = query.Where(s =>
@@ -80,7 +82,7 @@ namespace api_lab2.Controllers
             var s = mapper.Map<Student>(sdto);
             srepo.Add(s);
             srepo.Save();
-            return CreatedAtAction(nameof(getbyid), new { id = s.St_Id }, sdto);
+            return CreatedAtAction(nameof(getbyid), new { id = s.Id }, sdto);
         }
 
 

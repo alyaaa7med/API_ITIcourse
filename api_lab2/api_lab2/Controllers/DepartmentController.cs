@@ -10,10 +10,10 @@ namespace api_lab2.Controllers
     [Route("api/[controller]s")]
     public class DepartmentController : Controller
     {
-        DepartmentRepo drepo;
+        GenericRepo<Department> drepo;
         IMapper mapper;
 
-        public DepartmentController(DepartmentRepo drepo , IMapper mapper)
+        public DepartmentController(GenericRepo<Department> drepo , IMapper mapper)
         {
             this.drepo = drepo;
             this.mapper = mapper;
@@ -25,13 +25,14 @@ namespace api_lab2.Controllers
 
         public IActionResult GetAll()
         {
-            var query = drepo.getall();
+            var query = drepo.getall(d => d.students);
 
 
 
-            var depttDTOList = mapper.Map<List<DepartmentDTO>>(query);
 
-                        return Ok(depttDTOList);
+            var deptDTOList = mapper.Map<List<DepartmentDTO>>(query);
+
+            return Ok(deptDTOList);
         }
 
         [HttpGet("{id:int}")]
@@ -59,7 +60,7 @@ namespace api_lab2.Controllers
 
             var createdDTO = mapper.Map<DepartmentDTO>(department);
 
-            return CreatedAtAction(nameof(getbyid), new { id = department.Dept_Id }, createdDTO);
+            return CreatedAtAction(nameof(getbyid), new { id = department.Id }, createdDTO);
 
 
         }

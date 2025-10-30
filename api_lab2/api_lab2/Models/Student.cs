@@ -1,12 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using api_lab2.Repository;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace api_lab2.Models
 {
-    public class Student
+    public class Student: IentityId
     {
+        [Column("St_Id")]
         [Key]
-        public int St_Id { get; set; }
+
+        public int Id { get; set; } //will hides the inherited one => do not worry 
         public string? St_FName { get; set; }
         public string? St_LName { get; set; }
         public string? St_Address { get; set; }

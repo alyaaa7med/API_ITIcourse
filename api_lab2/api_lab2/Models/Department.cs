@@ -7,7 +7,9 @@ namespace api_lab2.Models
     public class Department
     {
         [Key]
-        public int Dept_Id { get; set; }
+        [Column("Dept_Id")]
+
+        public int Id  { get; set; }
         public string? Dept_Name { get; set; }
         public string? Dept_Desc { get; set; }
         public string? Dept_Location { get; set; }

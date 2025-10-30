@@ -34,8 +34,8 @@ namespace api_lab2
             });
 
 
-            builder.Services.AddScoped<StudentRepo>();
-            builder.Services.AddScoped<DepartmentRepo>();
+            //builder.Services.AddScoped<StudentRepo>();
+            //builder.Services.AddScoped<DepartmentRepo>();
 
 
             builder.Services.AddAutoMapper(typeof(mapconfig)); 

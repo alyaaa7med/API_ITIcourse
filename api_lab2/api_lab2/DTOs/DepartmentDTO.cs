@@ -6,13 +6,16 @@ using System.Text.Json.Serialization;
 namespace api_lab2.DTOs
 {
     public class DepartmentDTO
+
     {
-        public int Dept_Id { get; set;  }
+        //same name of department model fields
+        public int Id { get; set;  }
         public string? Dept_Name { get; set; }
         public string? Dept_Desc { get; set; }
         public string? Dept_Location { get; set; }
-        //public int? Dept_Manager { get; set; }
-        //public DateOnly? Manager_hireDate { get; set; }
-        public int? num_students { get; set; }
+
+        /* the next prob i can not make it in the get request only , i will ignore its value from post / put */
+
+        public int? num_students { get; set; } 
     }
 }

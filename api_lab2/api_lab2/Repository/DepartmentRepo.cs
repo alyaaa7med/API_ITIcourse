@@ -6,7 +6,7 @@ namespace api_lab2.Repository
     public class DepartmentRepo
     {
 
-        applicationDBcontext db;
+        /*applicationDBcontext db;
         public DepartmentRepo(applicationDBcontext db)
         {
             this.db = db;
@@ -51,5 +51,6 @@ namespace api_lab2.Repository
         {
             db.SaveChanges();
         }
+        */
     }
 }

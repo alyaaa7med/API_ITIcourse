@@ -54,8 +54,8 @@ namespace api_lab2.Repository
 
             //var maxId = db.student.Max(s => (int?)s.St_Id) ?? 0;
             var maxId = db.Set<Tentity>().Max(t=>(int?)t.Id)??0;
-
             t.Id = maxId + 1;
+
             db.Set<Tentity>().Add(t);
         }
 

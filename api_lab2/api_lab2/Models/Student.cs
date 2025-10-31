@@ -15,16 +15,15 @@ namespace api_lab2.Models
         public string? St_Address { get; set; }
         public int? St_Age { get; set; }
 
-        //public int? Dept_Id { get; set; }
-        //public int? St_super { get; set; }
-
-
+       
 
         //Foreign key properties must exist
         public int? Dept_Id { get; set; }
         public int? St_super { get; set; }
 
-        // Navigation properties
+        
+        //navigation property — it’s not stored in the DB
+        //it is for linq => include = join 
         [ForeignKey("Dept_Id")]
         public Department? department { get; set; } // 1:1 or many-to-1
 

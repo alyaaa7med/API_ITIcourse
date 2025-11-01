@@ -22,12 +22,11 @@ namespace api_lab2.Controllers
 
         [HttpGet]
         [Produces("application/json")]
-
+        [EndpointSummary("select all departments ")]
+        [ProducesResponseType(200,Type = typeof(DepartmentDTO))]
         public IActionResult GetAll()
         {
             var query = drepo.getall(d => d.students);
-
-
 
 
             var deptDTOList = mapper.Map<List<DepartmentDTO>>(query);
@@ -37,6 +36,10 @@ namespace api_lab2.Controllers
 
         [HttpGet("{id:int}")]
         [Produces("application/json")]
+        [EndpointSummary("select one department by id ")]
+        [ProducesResponseType(200, Type = typeof(DepartmentDTO))]
+        [ProducesResponseType(404, Type = typeof(void))]
+
         public ActionResult getbyid(int id)
         {
             Department d = drepo.getbyid(id);
@@ -48,6 +51,8 @@ namespace api_lab2.Controllers
 
         [HttpPost]
         [Consumes("application/json")]
+        [EndpointSummary("create new department  ")]
+
         public ActionResult post(DepartmentDTO depdto)
         {
             if (depdto == null) return BadRequest();
@@ -68,6 +73,8 @@ namespace api_lab2.Controllers
 
         [HttpPut("{id:int}")]
         [Consumes("application/json")]
+        [EndpointSummary("update existing department by id  ")]
+
         public IActionResult Update(int id, DepartmentDTO deptdto)
         {
             if (deptdto == null)
@@ -90,6 +97,8 @@ namespace api_lab2.Controllers
         [HttpDelete("{id:int}")]
         [Consumes("application/json")]
         [Produces("application/json")]
+        [EndpointSummary("delete department by id ")]
+        [ProducesResponseType(200, Type = typeof(DepartmentDTO))]
         public IActionResult Delete(int id)
         {
             var dept = drepo.getbyid(id);

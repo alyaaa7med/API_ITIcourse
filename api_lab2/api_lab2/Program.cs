@@ -2,6 +2,7 @@
 using api_lab2.MapperConfig;
 using api_lab2.Models;
 using api_lab2.Repository;
+using api_lab2.UnitOfWorks;
 using Microsoft.EntityFrameworkCore;
 using System;
 using static System.Net.Mime.MediaTypeNames;
@@ -34,11 +35,12 @@ namespace api_lab2
             });
 
 
-            //builder.Services.AddScoped<StudentRepo>();
+            //builder.Services.AddScoped<StudenstRepo>();
             //builder.Services.AddScoped<DepartmentRepo>();
             builder.Services.AddScoped<GenericRepo<Student>>();
             builder.Services.AddScoped<GenericRepo<Department>>();
 
+            builder.Services.AddScoped<UnitOfWork>();
 
             builder.Services.AddAutoMapper(typeof(mapconfig)); 
 

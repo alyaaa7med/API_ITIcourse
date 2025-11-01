@@ -8,7 +8,8 @@ namespace api_lab2.MapperConfig
     public class mapconfig : Profile
     {
 
-
+        /* works field by field in dto + model if they are of the same name 
+           but if not same will not mapped */
         public mapconfig()
         {
             CreateMap<Student, StudentDTO>()
@@ -18,9 +19,19 @@ namespace api_lab2.MapperConfig
             .ReverseMap();
 
 
+
             CreateMap<Department, DepartmentDTO>()
-            .ForMember( dest => dest.num_students,opt => opt.MapFrom(src => src.students != null ? src.students.Count : 0))
+            .ForMember(dest => dest.num_students, opt => opt.MapFrom(src => src.students != null ? src.students.Count : 0))
             .ReverseMap();
+
+
+
+            //must be added so that auto map can use it when mapping student with department info 
+            CreateMap<Department, UnitDepartmentDTO>().ReverseMap();
+
+            CreateMap<Student, UnitStudentDTO>()
+             .ForMember(dest => dest.ddto, opt => opt.MapFrom(src => src.department))
+             .ReverseMap();
 
         }
     }

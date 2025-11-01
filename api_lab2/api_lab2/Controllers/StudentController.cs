@@ -16,7 +16,7 @@ namespace api_lab2.Controllers
 
         GenericRepo<Student> srepo;
         IMapper mapper;
-        public StudentController(GenericRepo<Student> srepo ,IMapper mapper )
+        public StudentController(GenericRepo<Student> srepo,  IMapper mapper )
         {
             this.srepo = srepo;
             this.mapper = mapper;
@@ -78,8 +78,8 @@ namespace api_lab2.Controllers
         {
             if (sdto == null) return BadRequest();
             if (!ModelState.IsValid) return BadRequest(ModelState);
-          
             var s = mapper.Map<Student>(sdto);
+           
             srepo.Add(s);
             srepo.Save();
             return CreatedAtAction(nameof(getbyid), new { id = s.Id }, sdto);

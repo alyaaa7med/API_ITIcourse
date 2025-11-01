@@ -9,7 +9,7 @@ namespace api_lab2.DTOs
 
     {
         //same name of department model fields
-        public int Id { get; set;  }
+        public int Id { get; set; } //if it is only get :  AutoMapper (and the JSON serializer) cannot assign a value to it
         public string? Dept_Name { get; set; }
         public string? Dept_Desc { get; set; }
         public string? Dept_Location { get; set; }
